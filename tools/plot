@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ $# != 2 ]; then
+    echo "Usage: tools/plot [example name] [gnuplot script]"
+    echo "Will read stdout from example and use the gnuplot script to plot."
+    exit 1
+fi
+exe=build/examples/$1
+if [ ! -e $exe ]; then
+    echo "Executable $1 couldn't be found."
+    exit 1
+fi
+script=tools/plot_scripts/$2.p
+if [ ! -e $script ]; then
+    echo "Plot script $2 couldn't be found."
+    exit 1
+fi
+
+$exe > output.dat
+gnuplot $script -p
+rm output.dat

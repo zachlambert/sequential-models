@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $# != 1 ]; then
+    echo "Usage: tools/run [example name]"
+    exit 1
+fi
+name=$1
+cd build/examples
+if [ ! -e $name ]; then
+    echo "File $name couldn't be found"
+    exit 1
+fi
+
+./$name

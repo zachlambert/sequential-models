@@ -16,8 +16,13 @@ int main()
 
     Hmm *hmm = new HmmGaussian(a, b, c, d);
 
+    // Particle filter doesn't have to use the same
+    // parameters a an b as the actual model.
+    // However, as the difference between the true
+    // and trial pdf increases, the estimate variance
+    // increases.
     std::size_t N = 100;
-    ParticleFilterGaussian filter(hn, hmm, N, a, b);
+    ParticleFilterGaussian filter(hn, hmm, N, 1, 10);
 
     hmm_sampler.initialise();
     filter.initialise(hmm_sampler.yn);

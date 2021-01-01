@@ -12,6 +12,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 set(SRC
     src/hmm.cpp
+    src/particle.cpp
 )
 add_library(cpp_ml STATIC ${SRC})
 target_include_directories(cpp_ml

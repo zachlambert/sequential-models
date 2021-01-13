@@ -15,26 +15,6 @@ public:
 };
 
 
-class HmmMultivariateSampler {
-public:
-    typedef Eigen::VectorXd x_t;
-    typedef Eigen::VectorXd y_t;
-
-    HmmMultivariateSampler();
-    void initialise();
-    void step();
-
-    int n;
-    x_t xn;
-    y_t yn;
-
-private:
-    virtual x_t sample_p0() = 0;
-    virtual x_t sample_fn(const x_t &xn_prev, int n) = 0;
-    virtual y_t sample_gn(const x_t &xn, int n) = 0;
-};
-
-
 class HmmMultivariateStateSpace: public HmmMultivariate {
 public:
     HmmMultivariateStateSpace(Eigen::MatrixXd F,
